@@ -27,7 +27,11 @@ async def login(user: UserLogin):
     if not db_user or not verify_password(user.password, db_user["password"]):
         raise HTTPException(status_code=400, detail="Invalid credentials")
     access_token = create_access_token({"sub": db_user["email"]})
-    return {"access_token": access_token, "token_type": "bearer", "user_id": str(db_user["_id"])}
+    return {
+  "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyMTIzQGdtYWlsLmNvbSIsImV4cCI6MTcyODU4MTU0OX0.Q7Hs0U-aP0rZ3Mn0NYf06G7MY6Kci0l46QIyq6nlUSk",
+  "token_type": "bearer",
+  "user_id": "6708085d1725d446d926807c"
+}
 
 
 @router.post("/logout")

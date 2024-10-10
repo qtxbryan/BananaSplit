@@ -5,6 +5,7 @@
 report.html
 
 venv
+.venv
 .idea
 
 docs/build
