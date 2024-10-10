@@ -16,7 +16,21 @@ export const login = async (email, password) => {
       throw new Error(error.response?.data?.msg || 'Login failed');
     }
   };
-  
+
+export const register = async (email, password) => {
+    try {
+        const response = await axios.post(`${API_URL}/register`, { email, password });
+
+        const { message, user_id } = response.data;
+
+        localStorage.setItem('message', message);
+        localStorage.setItem('user_id', user_id);
+
+        return { message, user_id };
+    } catch (error) {
+        throw new Error(error.response?.data?.msg || 'Register failed');
+    }
+}
 export const logout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('user_id');

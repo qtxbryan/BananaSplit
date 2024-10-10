@@ -98,7 +98,7 @@ const SignIn = () => {
           <p className="text-xs text-muted-foreground">
             Don't have an account?{" "}
             <span
-              onClick={() => setState("signUp")}
+              onClick={() => router.push('/sign-up')}
               className="text-sky-700 hover:underline cursor-pointer"
             >
               Sign up

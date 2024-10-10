@@ -1,7 +1,7 @@
-// hooks/useAuth.js
 import { useState, useEffect } from "react";
 import {
   login as loginService,
+  register as registerService,
   logout as logoutService,
 } from "../services/authService";
 
@@ -32,12 +32,25 @@ const useAuth = () => {
     }
   };
 
+  const registerUser = async (email, password) => {
+    try {
+      const { message, user_id } = await registerService(email, password);
+      setUser({ user_id });
+      localStorage.setItem("user_id", user_id);
+      console.log("Registration Message:", message);
+      console.log("User ID:", user_id);
+      return true;
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  };
+
   const logoutUser = () => {
     logoutService();
     setUser(null);
   };
 
-  return { user, loginUser, logoutUser, loading };
+  return { user, loginUser, registerUser, logoutUser, loading };
 };
 
 export default useAuth;
